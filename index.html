@@ -6,52 +6,58 @@
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    background:#0f172a;
-    color:white;
-    text-align:center;
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+  text-align:center;
 }
+
 .header{
-    padding:20px;
-    background:#020617;
+  padding:20px;
+  background:#020617;
 }
+
 h1{
-    color:#38bdf8;
+  color:#38bdf8;
 }
+
 .container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 }
+
 .card{
-    background:#1e293b;
-    margin:15px;
-    padding:20px;
-    border-radius:15px;
-    width:250px;
+  background:#1e293b;
+  margin:15px;
+  padding:20px;
+  border-radius:15px;
+  width:250px;
 }
+
 .price{
-    color:#22c55e;
-    font-size:20px;
+  color:#22c55e;
+  font-size:20px;
 }
+
 button{
-    margin-top:10px;
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    background:#22c55e;
-    color:white;
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  background:#22c55e;
+  color:white;
+  cursor:pointer;
 }
-button:hover{
-    background:#16a34a;
-}
+
 .footer{
-    margin-top:30px;
-    padding:20px;
-    background:#020617;
+  margin-top:30px;
+  padding:20px;
+  background:#020617;
 }
 </style>
+
 </head>
 
 <body>
@@ -66,49 +72,16 @@ button:hover{
 <div class="card">
 <h2>86 Diamond</h2>
 <p class="price">5500 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%2086%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
 </div>
 
 <div class="card">
 <h2>172 Diamond</h2>
 <p class="price">11000 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%20172%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
 </div>
 
 <div class="card">
 <h2>257 Diamond</h2>
 <p class="price">17000 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%20257%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
-</div>
-
-<div class="card">
-<h2>429 Diamond</h2>
-<p class="price">27000 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%20429%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
-</div>
-
-<div class="card">
-<h2>600 Diamond</h2>
-<p class="price">37000 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%20600%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
-</div>
-
-<div class="card">
-<h2>1049 Diamond</h2>
-<p class="price">65000 MMK</p>
-<a href="https://t.me/BoBoEdit34?text=I%20want%201049%20Diamond.%20My%20ID%20-%20">
-<button>Buy Now</button>
-</a>
 </div>
 
 </div>
@@ -116,59 +89,68 @@ button:hover{
 <div class="footer">
 <p>📩 Telegram - @BoBoEdit34</p>
 <p>📞 09776937797</p>
-<p>💰 KBZ Pay / Wave Pay Available</p>
 </div>
 
-<div style="margin-top:20px;">
-<h2>💰 Payment</h2>
-<p>ငွေပို့ပြီး Screenshot ကို Telegram ပို့ပါ</p>
-</div>
-<div style="margin-top:40px;padding:20px;background:#1e293b;border-radius:15px;">
-<h2>🧾 Order Form</h2>
+<!-- ✅ ORDER FORM (ONLY ONE) -->
+<div style="margin-top:30px;">
+<h2>📝 Order Form</h2>
 
-<form>
-<input type="text" placeholder="Your Game ID" required style="padding:10px;margin:10px;width:80%;"><br>
+<form onsubmit="sendToTelegram(); return false;">
 
-<select style="padding:10px;margin:10px;width:85%;">
-<option>Select Diamond</option>
-<option>86 Diamond</option>
-<option>172 Diamond</option>
-<option>257 Diamond</option>
-<option>429 Diamond</option>
-<option>600 Diamond</option>
-<option>1049 Diamond</option>
+<input type="text" id="gameId" placeholder="Your Game ID" required
+style="padding:10px;margin:10px;width:80%;"><br>
+
+<select id="diamond" style="padding:10px;margin:10px;width:85%;">
+<option value="">Select Diamond</option>
+<option value="86">86 Diamond</option>
+<option value="172">172 Diamond</option>
+<option value="257">257 Diamond</option>
 </select><br>
 
-<input type="file" style="margin:10px;"><br>
-
 <button type="submit">Submit Order</button>
+
 </form>
-
-<p>📩 Submitပြီး Screenshot ကို Telegram ပို့ပါ</p>
 </div>
-<div style="margin-top:40px;padding:20px;background:#1e293b;border-radius:15px;">
-<h2>🧾 Order Form</h2>
 
-<form>
-<input type="text" placeholder="Your Game ID" required style="padding:10px;margin:10px;width:80%;"><br>
+<!-- ✅ FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-<select style="padding:10px;margin:10px;width:85%;">
-<option>Select Diamond</option>
-<option>86 Diamond</option>
-<option>172 Diamond</option>
-<option>257 Diamond</option>
-<option>429 Diamond</option>
-<option>600 Diamond</option>
-<option>1049 Diamond</option>
-</select><br>
+<script>
+const firebaseConfig = {
+  apiKey: "PASTE_YOURS",
+  authDomain: "PASTE_YOURS",
+  projectId: "PASTE_YOURS"
+};
 
-<input type="file" style="margin:10px;"><br>
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-<button type="submit">Submit Order</button>
-</form>
+function sendToTelegram(){
 
-<p>📩 Submitပြီး Screenshot ကို Telegram ပို့ပါ</p>
-</div>
+var id = document.getElementById("gameId").value;
+var diamond = document.getElementById("diamond").value;
+
+if(id === "" || diamond === ""){
+  alert("Fill all fields!");
+  return;
+}
+
+// ✅ Firebase save
+db.collection("orders").add({
+  gameId: id,
+  diamond: diamond,
+  time: new Date()
+});
+
+// ✅ Telegram message
+var message = "I want " + diamond + " Diamond. My ID - " + id;
+var url = "https://t.me/BoBoEdit34?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
+
+}
+</script>
 
 </body>
 </html>
