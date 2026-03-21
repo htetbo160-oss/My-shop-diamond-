@@ -1,60 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Diamond Shop</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SO GAME SHOP</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#0f172a;
-  color:white;
-  text-align:center;
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(to right, #0f75ff, #00c6ff);
+  color: white;
 }
 
-.header{
-  padding:20px;
-  background:#020617;
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
 }
 
-h1{
-  color:#38bdf8;
+.logo {
+  display: flex;
+  align-items: center;
 }
 
-.container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+.logo img {
+  width: 40px;
+  border-radius: 10px;
+  margin-right: 10px;
 }
 
-.card{
-  background:#1e293b;
-  margin:15px;
-  padding:20px;
-  border-radius:15px;
-  width:250px;
+.menu {
+  font-size: 25px;
+  background: #ddd;
+  color: black;
+  padding: 5px 12px;
+  border-radius: 10px;
 }
 
-.price{
-  color:#22c55e;
-  font-size:20px;
+/* Card */
+.card {
+  background: #eee;
+  color: black;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
 }
 
-button{
-  margin-top:10px;
-  padding:10px 20px;
-  border:none;
-  border-radius:8px;
-  background:#22c55e;
-  color:white;
-  cursor:pointer;
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
 }
 
-.footer{
-  margin-top:30px;
-  padding:20px;
-  background:#020617;
+.green { background: green; }
+.blue { background: #007bff; }
+
+/* Game Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.game {
+  background: white;
+  color: black;
+  border-radius: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.game img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.buy {
+  background: #111;
+  color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.8;
 }
 </style>
 
@@ -62,93 +103,56 @@ button{
 
 <body>
 
+<!-- Header -->
 <div class="header">
-<h1>💎 Diamond Shop</h1>
-<p>Mobile Legend Diamond Store</p>
+  <div class="logo">
+    <img src="https://via.placeholder.com/40">
+    <b>SO GAME SHOP</b>
+  </div>
+  <div class="menu">☰</div>
 </div>
 
-<div class="container">
-
+<!-- Balance -->
 <div class="card">
-<h2>86 Diamond</h2>
-<p class="price">5500 MMK</p>
+  <h3>Balance: 83100 Ks</h3>
+
+  <div class="btn green" onclick="goPage('payment.html')">Recharge</div>
+  <div class="btn blue" onclick="goPage('games.html')">Buy Diamonds</div>
+  <div class="btn blue" onclick="goPage('history.html')">History</div>
 </div>
 
-<div class="card">
-<h2>172 Diamond</h2>
-<p class="price">11000 MMK</p>
-</div>
+<!-- Game List -->
+<h2 style="padding-left:10px;">All Games</h2>
 
-<div class="card">
-<h2>257 Diamond</h2>
-<p class="price">17000 MMK</p>
-</div>
+<div class="grid">
+
+  <div class="game">
+    <img src="https://via.placeholder.com/150">
+    <p>Mobile Legends</p>
+    <div class="buy" onclick="goPage('mlbb.html')">Buy Now</div>
+  </div>
+
+  <div class="game">
+    <img src="https://via.placeholder.com/150">
+    <p>PUBG Mobile</p>
+    <div class="buy">Buy Now</div>
+  </div>
+
+  <div class="game">
+    <img src="https://via.placeholder.com/150">
+    <p>Free Fire</p>
+    <div class="buy">Buy Now</div>
+  </div>
 
 </div>
 
 <div class="footer">
-<p>📩 Telegram - @BoBoEdit34</p>
-<p>📞 09776937797</p>
+  Privacy Policy | Terms & Conditions
 </div>
-
-<!-- ✅ ORDER FORM (ONLY ONE) -->
-<div style="margin-top:30px;">
-<h2>📝 Order Form</h2>
-
-<form onsubmit="sendToTelegram(); return false;">
-
-<input type="text" id="gameId" placeholder="Your Game ID" required
-style="padding:10px;margin:10px;width:80%;"><br>
-
-<select id="diamond" style="padding:10px;margin:10px;width:85%;">
-<option value="">Select Diamond</option>
-<option value="86">86 Diamond</option>
-<option value="172">172 Diamond</option>
-<option value="257">257 Diamond</option>
-</select><br>
-
-<button type="submit">Submit Order</button>
-
-</form>
-</div>
-
-<!-- ✅ FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
-const firebaseConfig = {
-  apiKey: "PASTE_YOURS",
-  authDomain: "PASTE_YOURS",
-  projectId: "PASTE_YOURS"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-function sendToTelegram(){
-
-var id = document.getElementById("gameId").value;
-var diamond = document.getElementById("diamond").value;
-
-if(id === "" || diamond === ""){
-  alert("Fill all fields!");
-  return;
-}
-
-// ✅ Firebase save
-db.collection("orders").add({
-  gameId: id,
-  diamond: diamond,
-  time: new Date()
-});
-
-// ✅ Telegram message
-var message = "I want " + diamond + " Diamond. My ID - " + id;
-var url = "https://t.me/BoBoEdit34?text=" + encodeURIComponent(message);
-
-window.open(url, "_blank");
-
+function goPage(page){
+  window.location.href = page;
 }
 </script>
 
